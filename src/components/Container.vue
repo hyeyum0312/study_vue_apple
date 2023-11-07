@@ -7,11 +7,7 @@
     <div v-if="props.step === 1">
         <div class="upload-image" :style="`background-image: url(${props.fileInfo})`"></div>
         <div class="filters">
-            <div class="filters-1"></div>
-            <div class="filters-1"></div>
-            <div class="filters-1"></div>
-            <div class="filters-1"></div>
-            <div class="filters-1"></div>
+            <FilterBox v-for="item in filter" :filterList="item" :key="item" :imageUrl="props.fileInfo"></FilterBox>
         </div>
     </div>
 
@@ -27,7 +23,10 @@
 <script setup>
 import { defineProps, ref, defineEmits } from "vue";
 import Post from "./Post.vue";
+import FilterBox from "./FilterBox.vue";
 const contents = ref("");
+const filter = ref(["aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]);
+
 const props = defineProps({
     listData: {
         type: Object, // 객체 형식의 prop을 명시
