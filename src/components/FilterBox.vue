@@ -1,6 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div :class="`filter-item ${props.filterList}`" :style="`background-image:url(${props.imageUrl})`"></div>
+    <div @click="fire" :class="`filter-item ${props.filterList}`" :style="`background-image:url(${props.imageUrl})`">
+        <slot></slot>
+        <button @click="fire"></button>
+    </div>
 </template>
 
 <script setup>
@@ -9,6 +12,10 @@ const props = defineProps({
     imageUrl: String,
     filterList: [],
 });
+
+function fire() {
+    this.emiter.emit("filter", "필터명");
+}
 </script>
 
 <style>

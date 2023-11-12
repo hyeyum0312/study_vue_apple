@@ -7,7 +7,9 @@
     <div v-if="props.step === 1">
         <div class="upload-image" :style="`background-image: url(${props.fileInfo})`"></div>
         <div class="filters">
-            <FilterBox v-for="item in filter" :filterList="item" :key="item" :imageUrl="props.fileInfo"></FilterBox>
+            <FilterBox v-for="item in filter" :filterList="item" :key="item" :imageUrl="props.fileInfo">
+                <span>{{ item }}</span>
+            </FilterBox>
         </div>
     </div>
 
@@ -18,10 +20,15 @@
             <textarea class="write-box" v-model="contents">write!</textarea>
         </div>
     </div>
+
+    <div v-if="step == 3">
+        <MyPage />
+    </div>
 </template>
 
 <script setup>
 import { defineProps, ref, defineEmits } from "vue";
+import MyPage from "./MyPage.vue";
 import Post from "./Post.vue";
 import FilterBox from "./FilterBox.vue";
 const contents = ref("");

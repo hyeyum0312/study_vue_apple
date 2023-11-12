@@ -12,7 +12,17 @@
 
     <Container :listData="list" @addData="addData" :step="step" :fileInfo="fileInfo" />
 
-    <button @click="more">더보기</button>
+    <!-- <button @click="more">더보기</button>
+
+    <h4>안녕{{ $store.state.name }}</h4>
+    <button @click="$store.commit('이름변경')">버튼</button>
+
+    <p>{{ $store.state.age }}</p>
+    <button @click="$store.commit('나이변경', 10)">버튼</button>
+
+    <p>{{ $store.state.more }}</p>
+    <button @click="$store.dispatch('getData')">더보기버튼</button> -->
+
     <div class="footer">
         <ul class="footer-button-plus">
             <input @change="upload" multiple type="file" id="file" class="inputfile" />
@@ -22,25 +32,25 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import axios from "axios";
+import { ref, onMounted } from "vue";
+// import axios from "axios";
 import Container from "./components/Container.vue";
 import listData from "./listData";
 
 const list = ref([...listData]);
-const moreCount = ref(0);
-const step = ref(0);
+// const moreCount = ref(0);
+const step = ref(3);
 const fileInfo = ref("");
 const content = ref("");
 
-function more() {
-    const url = `https://codingapple1.github.io/vue/more${moreCount.value}.json`;
-    axios.get(url).then(function (res) {
-        const response = res.data;
-        list.value.push(response);
-        moreCount.value++;
-    });
-}
+// function more() {
+//     const url = `https://codingapple1.github.io/vue/more${moreCount.value}.json`;
+//     axios.get(url).then(function (res) {
+//         const response = res.data;
+//         list.value.push(response);
+//         moreCount.value++;
+//     });
+// }
 
 function upload(e) {
     let file = e.target.files;
@@ -69,6 +79,12 @@ function addData(data) {
     console.log("content", content);
     content.value = data.value;
 }
+
+onMounted(() => {
+    // this.emitter.on("filter", (a) => {
+    //     console.log("a", a);
+    // });
+});
 </script>
 
 <style>

@@ -5,9 +5,9 @@
             <div class="profile" :style="{ backgroundImage: `url(${item.userImage})` }"></div>
             <span class="profile-name"></span>
         </div>
-        <div class="post-body" :style="{ backgroundImage: `url(${item.postImage})` }"></div>
+        <div @click="$store.commit('좋아요변경', $store.state.like)" class="post-body" :style="{ backgroundImage: `url(${item.postImage})` }"></div>
         <div class="post-content">
-            <p>43 Likes</p>
+            <p>{{ $store.state.like }}Likes</p>
             <p>
                 <strong>{{ item.name }}</strong> {{ item.content }}
             </p>
